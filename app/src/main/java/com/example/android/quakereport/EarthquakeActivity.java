@@ -110,7 +110,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         } else {
             // otherwise, display error
             // first hide loading indicator so message will be visible
-            View loading_indicator = (View) findViewById(R.id.loading_indicator);
+            View loading_indicator = findViewById(R.id.loading_indicator);
             loading_indicator.setVisibility(View.GONE);
 
             // update empty state with no connection error message
@@ -139,7 +139,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         uriBuilder.appendQueryParameter("format", "geojson");
         uriBuilder.appendQueryParameter("limit", "10");
         uriBuilder.appendQueryParameter("minmag", minMagnitude);
-        uriBuilder.appendQueryParameter("orderby", "time");
+        uriBuilder.appendQueryParameter("orderby", orderBy);
 
         // Create a new loader for the given URL
         return new EarthquakeLoader(this, uriBuilder.toString());
@@ -148,7 +148,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
         // hide loading indicator because the data has been loaded
-        View loading_indicator = (View) findViewById(R.id.loading_indicator);
+        View loading_indicator = findViewById(R.id.loading_indicator);
         loading_indicator.setVisibility(View.GONE);
 
         // Set empty state text to display "No earthquakes found."
