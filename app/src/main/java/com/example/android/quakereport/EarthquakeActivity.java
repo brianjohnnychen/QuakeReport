@@ -125,6 +125,14 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
                 getString(R.string.settings_min_magnitude_key),
                 getString(R.string.settings_min_magnitude_default));
 
+        // look up the user’s preferred sort order when we build the URI for making the HTTP request.
+        // Read from SharedPreferences and check for the value associated with the key:
+        // getString(R.string.settings_order_by_key)
+        String orderBy = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default)
+        );
+
         Uri baseUri = Uri.parse(USGS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
